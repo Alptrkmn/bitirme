@@ -10,6 +10,7 @@ const PWD_REGEX = /^[A-z0-9!@#$%]{4,12}$/
 
 const NewUserForm = () => {
 
+
     const [addNewUser, {
         isLoading,
         isSuccess,
@@ -167,7 +168,7 @@ const NewUserForm = () => {
                 />
 
                 <label className="form__label" htmlFor="username">
-                    Mahalle: <span className="nowrap"></span></label>
+                    İlçe: <span className="nowrap"></span></label>
                 <input
                     className={`form__input ${validNeighbourhoodClass}`}
                     id="username"
@@ -179,7 +180,7 @@ const NewUserForm = () => {
                 />
 
                 <label className="form__label" htmlFor="username">
-                    Adres: <span className="nowrap"></span></label>
+                    Mahalle: <span className="nowrap"></span></label>
                 <input
                     className={`form__input ${validAdressClass}`}
                     id="username"

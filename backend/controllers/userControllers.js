@@ -25,7 +25,7 @@ const getAllUsers = asyncHandler(async (req, res) => {
 const createNewUser = asyncHandler(async (req, res) => {
     const { username, password, roles, city, neighbourhood, adress, tel} = req.body
 
-    if (!username || !password |!Array.isArray(roles) || !roles.length || !city || !neighbourhood || !adress || !tel) {
+    if (!username || !password |!Array.isArray(roles) || !roles.length) {
         return res.status(400).json({ message: 'Tüm Boşlukları Doldurun' })
     }
     const duplicate = await User.findOne({ username }).lean().exec()

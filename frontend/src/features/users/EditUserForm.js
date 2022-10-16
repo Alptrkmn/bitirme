@@ -9,7 +9,17 @@ const USER_REGEX = /^[A-z]{3,20}$/
 const PWD_REGEX = /^[A-z0-9!@#$%]{4,12}$/
 
 const EditUserForm = ({ user }) => {
+    const [file, setFile] = useState();
+    function handleChange(e) {
+        console.log(e.target.files);
+        setFile(URL.createObjectURL(e.target.files[0]));
+    }
 
+    const [pdf, setPdf] = useState();
+    function handleChangePdf(e) {
+        console.log(e.target.files);
+        setPdf(URL.createObjectURL(e.target.files[0]));
+    }
     const [updateUser, {
         isLoading,
         isSuccess,
@@ -65,6 +75,8 @@ const EditUserForm = ({ user }) => {
     const onActiveChanged = () => setActive(prev => !prev)
 
     const onSaveUserClicked = async (e) => {
+        localStorage.setItem(`${username}`, file)
+        // localStorage.setItem(`${id}`, pdf)
         if (password) {
             await updateUser({ id: user.id, username, password, roles, active })
         } else {
@@ -174,7 +186,11 @@ const EditUserForm = ({ user }) => {
                 >
                     {options}
                 </select>
+                <h3>Add image</h3>
+                <input type="file" onChange={handleChange} />
 
+                <h3>Add pdf</h3>
+                <input type="file" onChange={handleChangePdf} />
             </form>
         </>
     )

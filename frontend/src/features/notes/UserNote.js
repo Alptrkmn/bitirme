@@ -44,7 +44,7 @@ const UserNote = ({ noteId, value }) => {
                     <td className="table__cell note__updated">{note.neighbourhood}</td>
                     <td className="table__cell note__title">{note.title}</td>
                     <td className="table__cell note__username">{note.text}</td>
-                    <td className="table__cell note__username">image</td>
+                    {/* <td className="table__cell note__username"><img src={imgUrl} /></td> */}
                 </tr>
         )
 
