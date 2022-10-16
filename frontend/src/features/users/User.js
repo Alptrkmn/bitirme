@@ -1,12 +1,15 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons"
 import { useNavigate } from 'react-router-dom'
-
+import useAuth from '../../hooks/useAuth'
 import { useSelector } from 'react-redux'
 import { selectUserById } from './usersApiSlice'
 
 const User = ({ userId }) => {
     const user = useSelector(state => selectUserById(state, userId))
+
+    const { status } = useAuth()
+    
 
     const navigate = useNavigate()
 
@@ -23,7 +26,11 @@ const User = ({ userId }) => {
                 <td className={`table__cell ${cellStatus}`}>{user.city}</td>
                 <td className={`table__cell ${cellStatus}`}>{user.district}</td>
                 <td className={`table__cell ${cellStatus}`}>{user.street}</td>
-                <td className={`table__cell ${cellStatus}`}>{userRolesString}</td>
+                { status==="Bakanlık Çalışanı" ?
+                    <td className={`table__cell ${cellStatus}`}>{userRolesString}</td>
+                :
+                    <td className={`table__cell ${cellStatus}`}>Kullanıcı</td>
+                }
                 <td className={`table__cell ${cellStatus}`}>
                     <button
                         className="icon-button table__button"
